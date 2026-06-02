@@ -39,3 +39,25 @@ else:
 st.header(f"Risk Level: {risk_level}")
 st.subheader("Mission Recommendation")
 st.write(recommendation)
+
+# Version 0.3: Flight Time + Battery Estimate
+
+base_flight_time = 30  # minutes
+
+battery_factor = battery / 100
+payload_penalty = payload * 2
+wind_penalty = wind * 0.3
+distance_penalty = distance * 1.5
+
+estimated_flight_time = (base_flight_time * battery_factor) - payload_penalty - wind_penalty - distance_penalty
+
+if estimated_flight_time < 0:
+    estimated_flight_time = 0
+
+battery_required = (distance * 8) + (payload * 5) + (wind * 0.7)
+
+st.subheader("Flight Time Estimate")
+st.write(f"Estimated Flight Time: {estimated_flight_time:.1f} minutes")
+
+st.subheader("Battery Estimate")
+st.write(f"Estimated Battery Required: {battery_required:.1f}%")
