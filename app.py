@@ -29,4 +29,13 @@ elif risk_score >= 2:
 else:
     risk_level = "🟢 LOW"
 
+if risk_level == "🔴 HIGH":
+    recommendation = "Mission not recommended. Reduce risk factors before flight."
+elif risk_level == "🟡 MEDIUM":
+    recommendation = "Proceed with caution. Review wind speed, payload, battery, and distance before launch."
+else:
+    recommendation = "Mission approved. Current conditions appear suitable for flight."
+
 st.header(f"Risk Level: {risk_level}")
+st.subheader("Mission Recommendation")
+st.write(recommendation)
