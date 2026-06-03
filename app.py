@@ -93,4 +93,3 @@ st.write(feasibility_message)
 
 st.subheader("Estimated Battery Remaining")
 st.write(f"Estimated Battery Remaining After Mission: {battery_remaining:.1f}%")
-
