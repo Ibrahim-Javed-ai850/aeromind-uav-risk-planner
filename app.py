@@ -61,3 +61,25 @@ st.write(f"Estimated Flight Time: {estimated_flight_time:.1f} minutes")
 
 st.subheader("Battery Estimate")
 st.write(f"Estimated Battery Required: {battery_required:.1f}%")
+# Mission Feasibility Status
+
+battery_remaining = battery - battery_required
+
+if estimated_flight_time <= 5 or battery_remaining < 10 or risk_level == "🔴 HIGH":
+    mission_status = "🔴 ABORT"
+    feasibility_message = "Mission is not recommended. Conditions may create unsafe flight risk."
+elif estimated_flight_time <= 12 or battery_remaining < 25 or risk_level == "🟡 MEDIUM":
+    mission_status = "🟡 CAUTION"
+    feasibility_message = "Mission may proceed with caution. Review battery, wind, payload, and distance before launch."
+else:
+    mission_status = "🟢 APPROVED"
+    feasibility_message = "Mission approved. Current conditions appear suitable for flight."
+
+st.subheader("Mission Feasibility Status")
+st.success(mission_status) if "APPROVED" in mission_status else (
+    st.warning(mission_status) if "CAUTION" in mission_status else st.error(mission_status)
+)
+st.write(feasibility_message)
+
+st.subheader("Estimated Battery Remaining")
+st.write(f"Estimated Battery Remaining After Mission: {battery_remaining:.1f}%")
