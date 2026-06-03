@@ -76,9 +76,13 @@ else:
     feasibility_message = "Mission approved. Current conditions appear suitable for flight."
 
 st.subheader("Mission Feasibility Status")
-st.success(mission_status) if "APPROVED" in mission_status else (
-    st.warning(mission_status) if "CAUTION" in mission_status else st.error(mission_status)
-)
+
+if "APPROVED" in mission_status:
+    st.success(mission_status)
+elif "CAUTION" in mission_status:
+    st.warning(mission_status)
+else:
+    st.error(mission_status)
 st.write(feasibility_message)
 
 st.subheader("Estimated Battery Remaining")
