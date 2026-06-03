@@ -87,3 +87,14 @@ st.write(feasibility_message)
 
 st.subheader("Estimated Battery Remaining")
 st.write(f"Estimated Battery Remaining After Mission: {battery_remaining:.1f}%")
+battery_required = (distance * 8) + (payload * 5) + (wind * 0.7)
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Risk Score", risk_score)
+
+with col2:
+    st.metric("Flight Time", f"{estimated_flight_time:.1f} min")
+
+with col3:
+    st.metric("Battery Required", f"{battery_required:.1f}%")
